@@ -1,28 +1,28 @@
 # Akash Network Provider Console
 
-Open-source tooling that lets operators run and manage compute providers on the Akash Network, built and maintained by Arc10 since 2022.
+Open-source provider tooling for the Akash Network: onboarding, attribute management and upgrade across Kubernetes, blockchain and SSH-based remote provisioning. Built and maintained end to end by Arc10 since 2022.
 
-## The problem
+## The situation
 
-Akash Network is a decentralized cloud marketplace: buyers post deployment requirements, providers bid to run them, and the chain handles settlement. Tenants had a working tool for deploying containers. Providers did not. Becoming a provider meant working through a command line, and most operators who don't live in Linux never got past it. The Akash core team and community wanted an open-source provider tool covering the whole provider lifecycle, and brought Arc10 in to build it.
+Akash Network is a decentralized cloud computing marketplace: buyers post deployment requirements, providers bid to run them, and the chain handles settlement. The tenant side of that marketplace had a working tool for deploying containers. The provider side did not. Becoming a provider meant working through a CLI, a learning curve most non-Linux-native operators do not get past.
 
-## What Arc10 did
+The Akash core team and the broader community decided on a purpose-built, open-source provider tool covering the full provider lifecycle (onboarding, attribute management, upgrade, monitoring). Arc10 was brought in to build it.
+
+## The approach
 
 Arc10 owned the build end to end, with one team across three very different surfaces:
 
-- **The chain.** Provider attributes, bids and leases live on a Cosmos-SDK chain, so console actions become signed transactions, with version awareness as the chain changes.
-- **Kubernetes on the provider's hardware.** Setup, attribute updates and rolling upgrades of the provider services through Helm, without breaking running leases.
-- **Remote provisioning over SSH.** A hardened execution layer that runs checks, installs and upgrades on machines the console doesn't own.
+- **The chain.** Provider attributes, bids, leases and settlement live on a Cosmos-SDK chain, so anything the console does on a provider's behalf becomes signed transactions, with version awareness as the chain changes.
+- **Kubernetes on the provider's hardware.** Provider setup, management and upgrades, including rolling updates of the provider services through Helm, without breaking the leases already running.
+- **SSH-based remote provisioning.** A hardened execution layer that runs environment checks, installs and upgrades on hardware the console does not own.
 
-On top of that sit a FastAPI and MongoDB backend, a pricing integration that loads externally hosted pricing logic at runtime, and a Next.js console that never holds Akash keys or SSH credentials itself.
+Around that sit a FastAPI and MongoDB backend, a pricing integration that pulls externally hosted pricing logic at runtime, and a Next.js / TypeScript console that never holds Akash keys or provider SSH credentials directly.
 
-## Outcome (as stated on arc10.io)
+## Outcomes (as published on arc10.io)
 
 - 50%+ of community providers running on the console.
-- Live in production as the network's primary provider tooling.
-- Open source under Apache 2.0, replacing a closed-source predecessor.
-
-Since September 2026 new providers are built with Akash's Provider Playbook; the console handles dashboards and management of existing providers (per the console's repository).
+- Live in production, the primary provider tooling on the network.
+- Open source under Apache 2.0, replacing the closed-source predecessor.
 
 ## Stack
 
@@ -30,11 +30,8 @@ FastAPI, MongoDB, Next.js, TypeScript, Kubernetes, Helm, Cosmos-SDK, SSH-based r
 
 ## Engagement
 
-Ongoing since 2022. Senior engineers, end to end.
+Started in 2022, ongoing. Senior engineers, end to end.
 
 ## Links
 
 - Case study: [arc10.io/work/akash](https://arc10.io/work/akash)
-- Live console: [provider-console.akash.network](https://provider-console.akash.network/)
-- Source: [akash-network/console](https://github.com/akash-network/console/tree/main/apps/provider-console) (frontend) and [akash-network/provider-console-api](https://github.com/akash-network/provider-console-api) (backend)
-- Related: [Praetor](../praetor/), Arc10's earlier provider onboarding app, sold to Akash Network

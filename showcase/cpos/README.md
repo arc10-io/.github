@@ -1,26 +1,26 @@
 # CPOS / STARR: compliance-grade sales tracking
 
-STARR, a real-time sales tracking and reporting system that lets CPOS customers meet Ontario Government compliance reporting, live in production.
+STARR, a real-time, compliance-grade sales tracking system for Ontario Government reporting. Service-isolated, PCI-DSS-aligned, integrated with the PoS systems already in the field, and live in production.
 
-## The problem
+## The situation
 
-CPOS sells point-of-sale infrastructure. A growing share of its customers operate in categories where Ontario Government reporting is mandatory: sales tracked in real time, reconciled against regulated thresholds and reported in a format the government accepts. Getting it wrong puts a licence at risk. CPOS's in-house team had no spare capacity for a multi-quarter compliance system without pausing the rest of its roadmap.
+CPOS sells point-of-sale infrastructure. A growing share of its customers operate in categories where Ontario Government reporting is not optional: sales need to be tracked in real time, reconciled against regulated thresholds and reported in a format the government accepts. Getting it wrong is a licence problem. CPOS's small in-house team did not have spare capacity for a multi-quarter compliance system without putting the rest of its roadmap on hold.
 
-## What Arc10 did
+## The approach
 
-Arc10 took the whole STARR workstream: architecture, build, deployment and the integration with the PoS product CPOS already shipped.
+Arc10 took the entire STARR workstream end to end: architecture, build, deployment and the integration into the PoS surface CPOS already shipped.
 
-The defining decision was to build STARR as its own service rather than a feature inside the PoS. Reporting rules change, and an isolated service can change with them without redeploying the product customers rely on. It also keeps the compliance posture scoped to the one system that handles regulated data.
+The decision that defined the engagement was to build STARR as a service that integrates with the PoS, rather than as a feature inside it. Ontario's reporting rules evolve, and an isolated service can absorb those changes without redeploying the PoS product. It also keeps the compliance posture tightly scoped to the system that handles regulated data.
 
-- **Real-time pipeline:** sales events flow from the PoS into STARR on Java and Spring Boot, with PostgreSQL as the system of record and S3 for long-term report storage. It is idempotent, so a sale that arrives twice is reported once.
-- **Compliance posture:** PCI-DSS-aligned design, no cardholder data in STARR thanks to PoS-side tokenization, append-only audit logs, and Kubernetes workloads segmented by sensitivity.
-- **Government reporting:** outputs in the accepted format, on the required cadence, reconciled with the pipeline, with refunds, voids and partial transactions handled.
+- **Real-time pipeline:** sales events flow from the PoS into STARR on Java and Spring Boot, with PostgreSQL as the system of record and S3 for long-retention storage of reporting artifacts. The pipeline is idempotent: the same sale event arriving twice does not produce two reported transactions.
+- **Compliance-grade architecture:** PCI-DSS-aligned design, no cardholder data in STARR thanks to PoS-side tokenization, append-only audit logs, and Kubernetes deployments that segment sensitive workloads from the rest.
+- **Government reporting:** outputs in the format Ontario Government systems accept, on the cadence the regulation requires, reconciled against the source pipeline, with refunds, voids and partial transactions handled.
 
-## Outcome (as stated on arc10.io)
+## Outcomes (as published on arc10.io)
 
-- STARR is live in production for CPOS customers in the regulated categories.
-- CPOS's own team kept shipping the broader product in parallel.
-- The service has absorbed regulatory updates without redeploying the PoS.
+- STARR is live in production, serving CPOS customers in the regulated categories.
+- CPOS's in-house team kept shipping the broader PoS product in parallel.
+- The service-isolated design has absorbed regulatory updates without redeploying the PoS.
 
 > "Arc10 brought technical expertise, dedication, and customer service that we hadn't seen from other partners."
 > John Sbrolla, CPOS Inc.
