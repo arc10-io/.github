@@ -29,6 +29,7 @@ Agent runtime, run traces, code sandbox, RBAC, MCP.
 
 ## Links
 
+- Case study: [arc10.io/arclyx](https://arc10.io/arclyx)
 - Product: [arclyx.ai](https://arclyx.ai) · [Product overview](https://arclyx.ai/product) · [Connectors](https://arclyx.ai/product/connectors) · [Test runs](https://arclyx.ai/product/test-runs) · [Guardrails](https://arclyx.ai/product/guardrails) · [Security](https://arclyx.ai/security)
 - Ready-made agents: [the agent library](https://arclyx.ai/agents), or by team: [Sales](https://arclyx.ai/solutions/sales), [Marketing](https://arclyx.ai/solutions/marketing), [Finance](https://arclyx.ai/solutions/finance), [Customer support](https://arclyx.ai/solutions/customer-support), [Operations and HR](https://arclyx.ai/solutions/operations), [Engineering](https://arclyx.ai/solutions/engineering)
 - Engineering posts: [The Harness Eats The Model](https://arclyx.ai/blog/the-harness-eats-the-model) · [The Idempotency Problem in Agentic Tool Calling](https://arclyx.ai/blog/the-idempotency-problem-in-agentic-tool-calling) · [All engineering posts](https://arclyx.ai/blog/engineering)
